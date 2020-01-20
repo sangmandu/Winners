@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Winners-App</string>
-    <string name="feedbacktype1">나의 초등학교 이름은?</string>
-    <string name="feedbacktype2">가장 기억에 남는 장소는?</string>
+    <string name="feedbacktype1">가장 기억에 남는 장소는?</string>
+    <string name="feedbacktype2">나의 초등학교 이름은?</string>
     <string name="feedbacktype3">내 애완동물의 이름은?</string>
 </resources>
