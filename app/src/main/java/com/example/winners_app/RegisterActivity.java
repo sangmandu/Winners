@@ -1,10 +1,8 @@
 package com.example.winners_app;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
 import android.app.Dialog;
-import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -14,7 +12,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -40,50 +37,56 @@ public class RegisterActivity extends AppCompatActivity {
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog dialog = new Dialog(RegisterActivity.this);
-                LinearLayout contentView = (LinearLayout) (RegisterActivity.this).getLayoutInflater().inflate(R.layout.activity_loading_popup, null);
-                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(contentView);
-
-                ImageView image = (ImageView) contentView.findViewById(R.id.imageView);
-                final AnimationDrawable animation = (AnimationDrawable) image.getDrawable();
-                dialog.setCancelable(false);
-
-                dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                    @Override
-                    public void onShow(DialogInterface dialog) {
-                        animation.start();
-                    }
-                });
-                dialog.show();
-
-                // DB 연동 시간 설정 (일단 5초)
-                thread = new Thread() {
-                    @Override
-                    public void run() {
-                        try {
-                            synchronized (this) {
-                                // Wait given period of time or exit on touch
-                                wait(5000);
-                            }
-                        } catch (InterruptedException ex) {
-                        }
-                        // 끝나면,
-                        finish();
-                        // 로그인 화면으로 돌아가기
-                        Intent intent = new Intent();
-                        intent.setClass(RegisterActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                    }
-                };
-                thread.start();
+                // 로딩화면(로딩시간, 다음화면 설정, 고정)
+                Loading(5000, LoginActivity.class, getApplicationContext());
 
                 //
-                // DB 연동...
+                // 로딩 할 작업 (DB 연동)
                 //
             }
         });
     }
+
+    public void Loading(final int time, final Class cls,final Context context){
+        // 로딩화면(다이얼로그) 설정
+        final Dialog dialog = new Dialog(RegisterActivity.this, R.style.CustomDialogTheme);
+        LinearLayout contentView = (LinearLayout) (RegisterActivity.this).getLayoutInflater().inflate(R.layout.activity_loading_popup, null);
+        dialog.setContentView(contentView);
+
+        ImageView image = (ImageView) contentView.findViewById(R.id.imageView);
+        final AnimationDrawable animation = (AnimationDrawable) image.getDrawable();
+        dialog.setCancelable(false);
+
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                animation.start();
+            }
+        });
+        dialog.show();
+
+        // 작업&로딩 쓰레드 분리
+        thread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    synchronized (this) {
+                        // Wait given period of time or exit on touch
+                        wait(time);
+                    }
+                } catch (InterruptedException ex) {
+                }
+                // 끝나면,
+                dialog.dismiss();
+                finish();
+                // 다음화면으로
+                Intent intent = new Intent();
+                intent.setClass(context.getApplicationContext(), cls);
+                startActivity(intent);
+            }
+        };
+        thread.start();
+    }
+
 }
 
