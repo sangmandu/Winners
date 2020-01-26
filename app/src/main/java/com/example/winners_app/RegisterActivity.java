@@ -79,11 +79,12 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 // 끝나면,
                 dialog.dismiss();
-                finish();
                 // 다음화면으로
                 Intent intent = new Intent();
                 intent.setClass(context.getApplicationContext(), cls);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+                finish();
             }
         };
         thread.start();
