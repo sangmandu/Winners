@@ -33,9 +33,7 @@ public class LoadingActivity extends AppCompatActivity {
                 } catch (InterruptedException ex) {
                 }
                 finish();
-                // 다음 액티비티 실행
-                Intent intent = new Intent();
-                intent.setClass(LoadingActivity.this, LoginActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
         };
