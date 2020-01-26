@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.ActivityFragment">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tablayout_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabTextColor="@color/white"
+        app:tabIconTint="@android:color/white"
+        app:tabInlineLabel="false"
+        app:tabTextAppearance="@style/tab_text">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/ic_check"
+            android:text="활동 신청"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabFree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/ic_point"
+            android:text="포인트 관리" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabCompete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/ic_compete"
+            android:text="대회 참가" />
+
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <com.example.winners_app.adapter.TabViewPager
+        android:id="@+id/viewPager_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
