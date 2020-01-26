@@ -9,7 +9,7 @@ import android.widget.ImageView;
 public class LoadingActivity extends AppCompatActivity {
 
     AnimationDrawable animation;
-    private Thread splashThread;
+    Thread splashThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +27,14 @@ public class LoadingActivity extends AppCompatActivity {
             public void run() {
                 try {
                     synchronized (this) {
-                        // Wait given period of time or exit on touch
                         wait(3000);
                     }
                 } catch (InterruptedException ex) {
                 }
-                finish();
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.stay);
+                finish();
             }
         };
         splashThread.start();
