@@ -110,8 +110,7 @@ public class GalleryFragment extends Fragment implements SearchView.OnQueryTextL
 
                 if (searchView.getVisibility() == View.INVISIBLE){
                     fab.setImageResource(R.drawable.ic_close);
-                    Animator revealAnimator = ViewAnimationUtils
-                            .createCircularReveal(searchView, centerX, centerY, 0, radius);
+                    Animator revealAnimator = ViewAnimationUtils.createCircularReveal(searchView, centerX, centerY, 0, radius);
                     revealAnimator.setDuration(100);
                     searchView.setVisibility(View.VISIBLE);
                     revealAnimator.start();
@@ -122,8 +121,7 @@ public class GalleryFragment extends Fragment implements SearchView.OnQueryTextL
 
                 else if (searchView.getVisibility() == View.VISIBLE){
                     fab.setImageResource(R.drawable.ic_search);
-                    Animator revealAnimator = ViewAnimationUtils
-                            .createCircularReveal(searchView, centerX, centerY, radius, 0);
+                    Animator revealAnimator = ViewAnimationUtils.createCircularReveal(searchView, centerX, centerY, radius, 0);
                     revealAnimator.addListener(mRevealAnimatorListener);
                     revealAnimator.setDuration(100);
                     revealAnimator.start();
@@ -136,8 +134,7 @@ public class GalleryFragment extends Fragment implements SearchView.OnQueryTextL
             public boolean onQueryTextSubmit(String s) {
                 if (searchView.getVisibility() == View.VISIBLE) {
                     fab.setImageResource(R.drawable.ic_search);
-                    Animator revealAnimator = ViewAnimationUtils
-                            .createCircularReveal(searchView, centerX, centerY, radius, 0);
+                    Animator revealAnimator = ViewAnimationUtils.createCircularReveal(searchView, centerX, centerY, radius, 0);
                     revealAnimator.addListener(mRevealAnimatorListener);
                     revealAnimator.setDuration(100);
                     revealAnimator.start();
@@ -234,8 +231,7 @@ public class GalleryFragment extends Fragment implements SearchView.OnQueryTextL
     public void GalleryBackPressed() {
         if (searchView.getVisibility() == View.VISIBLE) {
             fab.setImageResource(R.drawable.ic_search);
-            Animator revealAnimator = ViewAnimationUtils
-                    .createCircularReveal(searchView, centerX, centerY, radius, 0);
+            Animator revealAnimator = ViewAnimationUtils.createCircularReveal(searchView, centerX, centerY, radius, 0);
             revealAnimator.addListener(mRevealAnimatorListener);
             revealAnimator.setDuration(100);
             revealAnimator.start();
@@ -247,8 +243,7 @@ public class GalleryFragment extends Fragment implements SearchView.OnQueryTextL
     public boolean onBackPressed() {
         if (searchView.getVisibility() == View.VISIBLE) {
             fab.setImageResource(R.drawable.ic_search);
-            Animator revealAnimator = ViewAnimationUtils
-                    .createCircularReveal(searchView, centerX, centerY, radius, 0);
+            Animator revealAnimator = ViewAnimationUtils.createCircularReveal(searchView, centerX, centerY, radius, 0);
             revealAnimator.addListener(mRevealAnimatorListener);
             revealAnimator.setDuration(100);
             revealAnimator.start();
