@@ -6,11 +6,7 @@
         <item name="colorPrimary">#00529C</item>
         <item name="colorPrimaryDark">#003A6D</item>
         <item name="colorAccent">#FFC107</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -26,6 +22,14 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+    <!-- 이미지 뷰어 테마 -->
+    <style name="AppTheme_ImageViewer" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
 </resources>

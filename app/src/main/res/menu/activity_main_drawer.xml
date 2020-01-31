@@ -7,23 +7,23 @@
         android:id="@+id/main_menu"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_announces"
+            android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
             android:title="@string/Home" />
         <item
-            android:id="@+id/nav_account"
+            android:id="@+id/nav_activity"
             android:icon="@drawable/ic_activity"
             android:title="@string/Activity" />
         <item
-            android:id="@+id/nav_sell"
+            android:id="@+id/nav_board"
             android:icon="@drawable/ic_board"
             android:title="@string/Board" />
         <item
-            android:id="@+id/nav_chat"
+            android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_dashboard"
             android:title="@string/Gallery" />
         <item
-            android:id="@+id/nav_notifications"
+            android:id="@+id/nav_people"
             android:icon="@drawable/ic_people"
             android:title="@string/People" />
     </group>

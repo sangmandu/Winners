@@ -2,6 +2,8 @@ package com.example.winners_app;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,10 +25,15 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    // BottomNavView와 NavDrawer 간의 연동 상수
+    private long backKeyPressedTime;
     private int Menu_Pos;
+    private Toast backToast;
+
+    // BottomNavView와 NavDrawer 간의 연동 상수
     private DrawerLayout drawer;
     private BottomNavigationView bottomNavigationView;
+    private FrameLayout frameLayout;
+    private NavigationView navigationView;
     private HomeFragment homeFragment = HomeFragment.newInstance();
     private ActivityFragment activityFragment = ActivityFragment.newInstance();
     private BoardFragment boardFragment = BoardFragment.newInstance();
@@ -40,32 +47,33 @@ public class MainActivity extends AppCompatActivity
 
         // BotNavView NavDrawer UI연결 및 초기화
         drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         bottomNavigationView = findViewById(R.id.navigation);
 
+        frameLayout = findViewById(R.id.f_container);
+
         // BotNavView에 따른 NavDrawer 연동
-        navigationView.getMenu().getItem(0).setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             Fragment selectedFragment = null;
             switch (item.getItemId()) {
-                case R.id.action_announces:
+                case R.id.drawer_home:
                     Menu_Pos = 0;
                     selectedFragment = homeFragment;
                     break;
-                case R.id.action_account:
+                case R.id.drawer_activity:
                     Menu_Pos = 1;
                     selectedFragment = activityFragment;
                     break;
-                case R.id.action_sell:
+                case R.id.drawer_board:
                     Menu_Pos = 2;
                     selectedFragment = boardFragment;
                     break;
-                case R.id.action_chat:
+                case R.id.drawer_gallery:
                     Menu_Pos = 3;
                     selectedFragment = galleryFragment;
                     break;
-                case R.id.action_notifications:
+                case R.id.drawer_people:
                     Menu_Pos = 4;
                     selectedFragment = peopleFragment;
                     break;
@@ -73,7 +81,7 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             if (selectedFragment != null) {
                 transaction.replace(R.id.f_container, selectedFragment);
-                transaction.commit();
+                transaction.addToBackStack(null).commit();
                 navigationView.getMenu().getItem(Menu_Pos).setChecked(true);
             }
             return true;
@@ -82,17 +90,8 @@ public class MainActivity extends AppCompatActivity
         //Manually displaying the first fragment - one time only
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.f_container, homeFragment);
+        navigationView.getMenu().getItem(0).setChecked(true);
         transaction.commit();
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
     }
 
     @Override
@@ -107,29 +106,50 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
         switch (item.getItemId()) {
-            case R.id.nav_announces:
-                bottomNavigationView.setSelectedItemId(R.id.action_announces);
+            case R.id.nav_home:
+                bottomNavigationView.setSelectedItemId(R.id.drawer_home);
                 ft.replace(R.id.f_container, homeFragment);
                 break;
-            case R.id.nav_account:
-                bottomNavigationView.setSelectedItemId(R.id.action_account);
+            case R.id.nav_activity:
+                bottomNavigationView.setSelectedItemId(R.id.drawer_activity);
                 ft.replace(R.id.f_container, activityFragment);
                 break;
-            case R.id.nav_sell:
-                bottomNavigationView.setSelectedItemId(R.id.action_sell);
+            case R.id.nav_board:
+                bottomNavigationView.setSelectedItemId(R.id.drawer_board);
                 ft.replace(R.id.f_container, boardFragment);
                 break;
-            case R.id.nav_chat:
-                bottomNavigationView.setSelectedItemId(R.id.action_chat);
+            case R.id.nav_gallery:
+                bottomNavigationView.setSelectedItemId(R.id.drawer_gallery);
                 ft.replace(R.id.f_container, galleryFragment);
                 break;
-            case R.id.nav_notifications:
-                bottomNavigationView.setSelectedItemId(R.id.action_notifications);
+            case R.id.nav_people:
+                bottomNavigationView.setSelectedItemId(R.id.drawer_people);
                 ft.replace(R.id.f_container, peopleFragment);
                 break;
         }
 
-        ft.commit();
+        ft.addToBackStack(null).commit();
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.f_container);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        else if (!(fragment instanceof OnBackPressedListener) || !((OnBackPressedListener) fragment).onBackPressed()){
+
+            if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+                backKeyPressedTime = System.currentTimeMillis();
+                backToast = Toast.makeText(this, "\'종료\' 하려면 한번 더 눌러주세요", Toast.LENGTH_SHORT);
+                backToast.show();
+                return;
+            }
+            if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+                finish();
+                backToast.cancel();
+            }
+        }
     }
 }

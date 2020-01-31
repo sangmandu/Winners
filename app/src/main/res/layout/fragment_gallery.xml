@@ -1,16 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/colorPrimary">
 
-    <TextView
-        android:id="@+id/welcome_tv"
+    <SearchView
+        android:id="@+id/search_bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:text="갤러리"
-        android:textColor="@color/colorPrimary"
-        android:textSize="30dp"
-        android:gravity="center"/>
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/searchbar_rounded"
+        android:backgroundTint="@color/white"
+        android:paddingLeft="15dp"
+        android:gravity="center"
+        android:elevation="10dp"
+        android:queryHint="키워드 검색"
+        android:searchIcon="@android:color/transparent"
+        app:queryBackground="@drawable/searchbar_rounded"
+        app:submitBackground="@drawable/searchbar_rounded"
+        android:visibility="invisible"/>
 
-</LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        app:fabCustomSize="50dp"
+        app:layout_anchor="@id/recyclerView"
+        app:layout_anchorGravity="top|right"
+        android:id="@+id/FAB"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_search"
+        app:elevation="10dp"
+        app:backgroundTint="@color/white"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
