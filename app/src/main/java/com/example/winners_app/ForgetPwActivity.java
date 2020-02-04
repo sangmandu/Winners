@@ -6,23 +6,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.winners_app.fragments.login_reg_pw.Regist1;
+import com.example.winners_app.fragments.login_reg_pw.ForgetPw1;
 
-public class RegisterActivity extends AppCompatActivity {
+public class ForgetPwActivity extends AppCompatActivity {
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_forgetpw);
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        Regist1 forgetpw1 = new Regist1();
-        transaction.add(R.id.frame, forgetpw1);
+        ForgetPw1 forgetpw1 = new ForgetPw1();
+        transaction.add(R.id.frame_forgetpw, forgetpw1);
         transaction.commit();
 
     }
