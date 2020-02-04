@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity
     private BottomNavigationView bottomNavigationView;
     private FrameLayout frameLayout;
     private NavigationView navigationView;
+
     private HomeFragment homeFragment = HomeFragment.newInstance();
     private ActivityFragment activityFragment = ActivityFragment.newInstance();
     private BoardFragment boardFragment = BoardFragment.newInstance();
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity
                     selectedFragment = galleryFragment;
                     break;
                 case R.id.drawer_people:
+
                     Menu_Pos = 4;
                     selectedFragment = peopleFragment;
                     break;
@@ -81,6 +83,7 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             if (selectedFragment != null) {
                 transaction.replace(R.id.f_container, selectedFragment);
+
                 transaction.addToBackStack(null).commit();
                 navigationView.getMenu().getItem(Menu_Pos).setChecked(true);
             }
@@ -90,6 +93,7 @@ public class MainActivity extends AppCompatActivity
         //Manually displaying the first fragment - one time only
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.f_container, homeFragment);
+
         navigationView.getMenu().getItem(0).setChecked(true);
         transaction.commit();
     }
