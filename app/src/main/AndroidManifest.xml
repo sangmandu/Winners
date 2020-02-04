@@ -28,8 +28,8 @@
 
         <activity android:name=".ForgetPwActivity">
         </activity>
-        <activity android:name=".LoginActivity">
-            android:screenOrientation="portrait"/>
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait">
