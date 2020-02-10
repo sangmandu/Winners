@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "567539021891",
+    "firebase_url": "https://winners-ba93b.firebaseio.com",
+    "project_id": "winners-ba93b",
+    "storage_bucket": "winners-ba93b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:567539021891:android:3d009870fff095e2e2fcf6",
+        "android_client_info": {
+          "package_name": "com.example.winners_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "567539021891-86pl5uh79ssoonehntp5co6oa4on1pfi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVR3VjHexIFlGckmx72XHQ0-KtEH-EgLU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "567539021891-86pl5uh79ssoonehntp5co6oa4on1pfi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -26,7 +26,9 @@
     <string name="Share">공유</string>
     <string name="Rate">앱 평가하기</string>
     <string name="Info">앱 정보</string>
+    <string name="Admin">관리자 모드</string>
 
-    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="default_notification_channel_id">Channel ID</string>
+    <string name="default_notification_channel_name" translatable="true">Test</string>
 
 </resources>

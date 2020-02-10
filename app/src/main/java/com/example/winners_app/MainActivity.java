@@ -1,6 +1,8 @@
 package com.example.winners_app;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -12,14 +14,28 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.winners_app.NavigationPages.NavAdmin;
 import com.example.winners_app.fragments.HomeFragment;
 import com.example.winners_app.fragments.ActivityFragment;
 import com.example.winners_app.fragments.BoardFragment;
 import com.example.winners_app.fragments.GalleryFragment;
 import com.example.winners_app.fragments.PeopleFragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity
@@ -53,6 +69,24 @@ public class MainActivity extends AppCompatActivity
         bottomNavigationView = findViewById(R.id.navigation);
 
         frameLayout = findViewById(R.id.f_container);
+
+        // 핸드폰 토큰 서버로 저장
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("Main", "getInstanceId failed", task.getException());
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        String token = task.getResult().getToken();
+                        Log.d("Main", token);
+                        sendTokentoServer(token);
+                        Toast.makeText(getApplicationContext(), token, Toast.LENGTH_SHORT).show();
+                    }
+                });
 
         // BotNavView에 따른 NavDrawer 연동
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
@@ -130,10 +164,55 @@ public class MainActivity extends AppCompatActivity
                 bottomNavigationView.setSelectedItemId(R.id.drawer_people);
                 ft.replace(R.id.f_container, peopleFragment);
                 break;
+            case R.id.nav_setting:
+                Toast.makeText(this, "설정", Toast.LENGTH_SHORT).show();
+
+                return true;
+            case R.id.nav_share:
+                Toast.makeText(this, "공유", Toast.LENGTH_SHORT).show();
+
+                return true;
+            case R.id.nav_star:
+                Toast.makeText(this, "앱 평가하기", Toast.LENGTH_SHORT).show();
+
+                return true;
+            case R.id.nav_info:
+                Toast.makeText(this, "앱 정보", Toast.LENGTH_SHORT).show();
+
+                return true;
+            case R.id.nav_admin:
+                Toast.makeText(this, "관리자 모드", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, NavAdmin.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_left_in, R.anim.slide_left_out);
+                return true;
         }
 
         ft.addToBackStack(null).commit();
         return true;
+    }
+
+    // 서버로 토큰 보내기 요청
+    public void sendTokentoServer(final String token) {
+        StringRequest request = new StringRequest(Request.Method.POST, "http://wns8363.dothome.co.kr/message/register.php",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Token", token);
+                return params;
+            }
+        };
+        Volley.newRequestQueue(this).add(request);
     }
 
     @Override

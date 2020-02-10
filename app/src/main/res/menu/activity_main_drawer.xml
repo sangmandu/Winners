@@ -34,17 +34,21 @@
             android:icon="@drawable/ic_settings"
             android:title="@string/Setting" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_share"
             android:icon="@drawable/ic_share"
             android:title="@string/Share" />
         <item
-            android:id="@+id/nav_share"
+            android:id="@+id/nav_star"
             android:icon="@drawable/ic_star"
             android:title="@string/Rate" />
         <item
-            android:id="@+id/nav_send"
+            android:id="@+id/nav_info"
             android:icon="@drawable/ic_info"
             android:title="@string/Info" />
+        <item
+            android:id="@+id/nav_admin"
+            android:icon="@drawable/ic_admin"
+            android:title="@string/Admin" />
     </group>
 
 </menu>
