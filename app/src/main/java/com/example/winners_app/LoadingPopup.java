@@ -30,7 +30,7 @@ public class LoadingPopup extends AppCompatActivity {
                 try {
                     synchronized (this) {
                         // Wait given period of time or exit on touch
-                        wait(5000);
+                        wait(1000);
                     }
                 } catch (InterruptedException ex) {
                 }
