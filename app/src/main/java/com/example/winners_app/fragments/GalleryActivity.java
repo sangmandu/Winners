@@ -38,6 +38,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -50,7 +51,12 @@ public class GalleryActivity extends AppCompatActivity {
     ArrayList<Cat> cats = new ArrayList<>();
     ArrayList<Cat> cats2 = new ArrayList<>();
     ArrayList<GalleryItemFragment> fragments = new ArrayList<>();
-    Bitmap mSaveBm;
+    Cat cat = cats2.get(mMyViewPager.getCurrentItem());
+    String image_url = cat.getImage().toString();
+    String image_title = cat.getTitle().toString();
+    Bitmap BitmapImage;
+    String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
+    back task;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,67 +68,63 @@ public class GalleryActivity extends AppCompatActivity {
         btn_save = findViewById(R.id.btn_save);
         btn_comment = findViewById(R.id.btn_cmt);
         btn_delete = findViewById(R.id.btn_del);
-
+        task = new back();
         init();
 
 
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SaveBitmapToFileCache(BitmapImage, extStorageDirectory, image_title);
 
-                Log.d("getmcat", mMyViewPager.getCurrentItem() + "");
-                Cat cat = cats2.get(mMyViewPager.getCurrentItem());
-                String image_url = cat.getImage().toString();
-                String image_title = cat.getTitle().toString();
-                Bitmap imgBitmap = GetImageFromURL(image_url);
-                OpenHttpConnection opHttpCon = new OpenHttpConnection();
-                opHttpCon.execute(image_url);
-                OutputStream outStream = null;
-                String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
-                File file = new File(extStorageDirectory, image_title);
-                try{
-                    outStream = new FileOutputStream(file);
-                    mSaveBm.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
-                    outStream.flush();
-                    outStream.close();
-                    Toast.makeText(GalleryActivity.this, "Saved", Toast.LENGTH_LONG).show();
-                }catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                    Toast.makeText(GalleryActivity.this,
-                            e.toString(), Toast.LENGTH_LONG).show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(GalleryActivity.this,
-                            e.toString(), Toast.LENGTH_LONG).show();
-
-                }
             }
         });
     }
-    public class OpenHttpConnection extends AsyncTask<Object, Void, Bitmap> {
-
+    private class back extends AsyncTask<String, Integer, Bitmap>{
         @Override
-        protected Bitmap doInBackground(Object... params) {
-            Bitmap mBitmap = null;
-            String url = (String) params[0];
-            InputStream in = null;
-            try {
-                in = new java.net.URL(url).openStream();
-                mBitmap = BitmapFactory.decodeStream(in);
-                in.close();
+        protected Bitmap doInBackground(String... urls) {
+            try{
+                URL myFileUrl = new URL(urls[0]);
+                HttpURLConnection conn = (HttpURLConnection)myFileUrl.openConnection();
+                conn.setDoInput(true);
+                conn.connect();
 
-            } catch (Exception ex) {
-                ex.printStackTrace();
+                InputStream is = conn.getInputStream();
+                BitmapImage = BitmapFactory.decodeStream(is);
+            } catch(IOException e){
+                e.printStackTrace();
             }
-            return mBitmap;
+            return BitmapImage;
         }
 
-        @Override
-        protected void onPostExecute(Bitmap bm) {
-            super.onPostExecute(bm);
-            mSaveBm = bm;
+        protected void onPostExecute(Bitmap img){
+            File file = new File(extStorageDirectory);
+
+            if (!file.exists()) {
+                file.mkdirs();
+            }
+
+            File fileCacheItem = new File(extStorageDirectory + image_title);
+            OutputStream out = null;
+
+            try {
+                fileCacheItem.createNewFile();
+                out = new FileOutputStream(fileCacheItem);
+
+                BitmapImage.compress(Bitmap.CompressFormat.JPEG, 100, out);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
+
 
     public Bitmap GetImageFromURL(String strImageURL) {
         Bitmap imageBitmap = null;
