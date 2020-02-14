@@ -29,4 +29,5 @@
 
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
 
+    <string name="api_key">AIzaSyAf4dWbQ3QuuR3BnGn3DyA0bmOdJ2lwmVA</string>
 </resources>

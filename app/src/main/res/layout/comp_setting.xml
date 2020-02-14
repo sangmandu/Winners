@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".CompSetting"
+        android:padding="20dp">
+
+        <RelativeLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/back_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:src="@drawable/ic_close"
+                android:layout_centerVertical="true"/>
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:text="대회 추가"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:textColor="#000"
+                android:layout_toEndOf="@id/back_title"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/title"
+            android:paddingHorizontal="15dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5dp">
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="이름:"
+                    android:textColor="#000"/>
+                <EditText
+                    android:id="@+id/et_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="(예) 대학 전국 대회"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5dp">
+                <TextView
+                    android:id="@+id/tv_url"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="URL:"
+                    android:textColor="#000"/>
+                <EditText
+                    android:id="@+id/et_url"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="(예) https://www.google.com/"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/loc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5dp">
+                <TextView
+                    android:id="@+id/tv_loc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="장소:"
+                    android:textColor="#000"/>
+                <EditText
+                    android:id="@+id/et_loc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="(예) 김영만 탁구 클럽"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5dp">
+                <TextView
+                    android:id="@+id/tv_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="주소:"
+                    android:textColor="#000"/>
+                <EditText
+                    android:id="@+id/et_add"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="(예) 수지구 죽전동 1191-5번지 701호 죽전스카이프라자 용인시 경기도 KR"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5dp">
+                <TextView
+                    android:id="@+id/tv_note"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="공지:"
+                    android:textColor="#000"/>
+                <EditText
+                    android:id="@+id/et_note"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="(예) 탁구화 필수지참!\n8시까지 단국대 정문 앞 셔틀버스!"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5dp">
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="20sp"
+                    android:text="0000년 00월 00일"
+                    android:gravity="center"
+                    android:layout_marginEnd="3dp"
+                    android:textColor="#000"/>
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="20sp"
+                    android:text="00시 00분"
+                    android:gravity="center"
+                    android:textColor="#000"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp">
+                    <Button
+                        android:id="@+id/btn_date_picker_dialog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="날짜 설정"/>
+                    <Button
+                        android:id="@+id/btn_time_picker_dialog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="시간 설정"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5dp">
+                <ImageView
+                    android:id="@+id/iv_image"
+                    android:layout_width="250dp"
+                    android:layout_height="150dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/comp_sample_image"
+                    android:layout_weight="0"/>
+                <Button
+                    android:id="@+id/btn_image"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="사진 설정"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dp">
+                <Button
+                    android:id="@+id/btn_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="저장"/>
+                <Button
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="취소"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>
