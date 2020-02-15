@@ -36,12 +36,13 @@
                     android:ellipsize="end"
                     android:maxLines="1"/>
                 <TextView
+                    android:layout_marginTop="10dp"
                     android:layout_marginHorizontal="10dp"
                     android:id="@+id/comp_date"
                     android:textSize="18sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0000/00/00 00:00AM"
+                    android:text="0000년 00월 00일   00시 00분"
                     android:textColor="#000"/>
                 <TextView
                     android:layout_marginHorizontal="10dp"
@@ -57,7 +58,8 @@
                     android:layout_marginHorizontal="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -81,7 +83,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true">
+                android:layout_alignParentBottom="true">
                 <Button
                     android:id="@+id/yes_i_can"
                     android:layout_width="wrap_content"

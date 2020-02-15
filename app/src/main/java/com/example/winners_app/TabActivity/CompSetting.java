@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.winners_app.R;
 import com.example.winners_app.models.Competition;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -74,11 +75,7 @@ public class CompSetting extends AppCompatActivity {
                         et_loc.getText().toString(),
                         et_add.getText().toString(),
                         et_note.getText().toString(),
-                        cal.get(Calendar.YEAR),
-                        (cal.get(Calendar.MONTH)+1),
-                        cal.get(Calendar.DATE),
-                        cal.get(Calendar.HOUR_OF_DAY),
-                        cal.get(Calendar.MINUTE),
+                        cal,
                         d);
                 TabCompete.mComps.add(comp);
 
@@ -107,13 +104,11 @@ public class CompSetting extends AppCompatActivity {
         //Calendar를 이용하여 년, 월, 일, 시간, 분을 PICKER에 넣어준다.
         cal = Calendar.getInstance();
 
-        tv_date.setText(String.format(Locale.KOREA, "%d년 %d월 %d일",
-                cal.get(Calendar.YEAR),
-                cal.get(Calendar.MONTH)+1,
-                cal.get(Calendar.DATE)));
-        tv_time.setText(String.format(Locale.KOREA, "%d시 %d분",
-                cal.get(Calendar.HOUR_OF_DAY),
-                cal.get(Calendar.MINUTE)));
+        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+        tv_date.setText(df.format(cal.getTime()));
+
+        SimpleDateFormat tf = new SimpleDateFormat("HH:mm");
+        tv_time.setText(tf.format(cal.getTime()));
 
         //DATE PICKER DIALOG
         findViewById(R.id.btn_date_picker_dialog).setOnClickListener(new View.OnClickListener() {
@@ -127,8 +122,8 @@ public class CompSetting extends AppCompatActivity {
                         cal.set(Calendar.MONTH, month);
                         cal.set(Calendar.DATE, date);
 
-                        String msg = String.format("%d년 %d월 %d일", year, month+1, date);
-                        tv_date.setText(msg);
+                        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+                        tv_date.setText(df.format(cal.getTime()));
                     }
                 }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
 
@@ -148,8 +143,8 @@ public class CompSetting extends AppCompatActivity {
                         cal.set(Calendar.HOUR_OF_DAY, hour);
                         cal.set(Calendar.MINUTE, min);
 
-                        String msg = String.format("%d시 %d분", hour, min);
-                        tv_time.setText(msg);
+                        SimpleDateFormat tf = new SimpleDateFormat("HH:mm");
+                        tv_time.setText(tf.format(cal.getTime()));
                     }
                 }, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true);  //마지막 boolean 값은 시간을 24시간으로 보일지 아닐지
 

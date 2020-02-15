@@ -2,30 +2,24 @@ package com.example.winners_app.models;
 
 import android.graphics.drawable.Drawable;
 
+import java.util.Calendar;
+
 public class Competition {
     private String name;
     private String web;
     private String loc;
     private String addr;
     private String note;
-    private int year;
-    private int month;
-    private int day;
-    private int hr;
-    private int min;
+    private Calendar datetime;
     private Drawable image;
 
-    public Competition(String name, String web, String loc, String addr, String note, int year, int month, int day, int hr, int min, Drawable image) {
+    public Competition(String name, String web, String loc, String addr, String note, Calendar datetime, Drawable image) {
         this.name = name;
         this.web = web;
         this.loc = loc;
         this.addr = addr;
         this.note = note;
-        this.year = year;
-        this.month = month;
-        this.day = day;
-        this.hr = hr;
-        this.min = min;
+        this.datetime = datetime;
         this.image = image;
     }
 
@@ -45,19 +39,19 @@ public class Competition {
         this.web = web;
     }
 
-    public String getLoc_name() {
+    public String getLoc() {
         return loc;
     }
 
-    public void setLoc_name(String loc) {
+    public void setLoc(String loc) {
         this.loc = loc;
     }
 
-    public String getLocation() {
+    public String getAddr() {
         return addr;
     }
 
-    public void setLocation(String addr) {
+    public void setAddr(String addr) {
         this.addr = addr;
     }
 
@@ -69,44 +63,12 @@ public class Competition {
         this.note = note;
     }
 
-    public int getYear() {
-        return year;
+    public Calendar getDatetime() {
+        return datetime;
     }
 
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public int getMonth() {
-        return month;
-    }
-
-    public void setMonth(int month) {
-        this.month = month;
-    }
-
-    public int getDay() {
-        return day;
-    }
-
-    public void setDay(int day) {
-        this.day = day;
-    }
-
-    public int getHr() {
-        return hr;
-    }
-
-    public void setHr(int hr) {
-        this.hr = hr;
-    }
-
-    public int getMin() {
-        return min;
-    }
-
-    public void setMin(int min) {
-        this.min = min;
+    public void setDatetime(Calendar datetime) {
+        this.datetime = datetime;
     }
 
     public Drawable getImage() {

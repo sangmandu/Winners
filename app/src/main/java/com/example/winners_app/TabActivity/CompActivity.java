@@ -27,6 +27,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -64,6 +65,13 @@ public class CompActivity extends AppCompatActivity implements OnMapReadyCallbac
     private boolean idk_bool;
     private Button yes_i_can;
     private Button no_i_cant;
+
+    private UserAdapter yes_adapter;
+    private UserAdapter no_adapter;
+    private UserAdapter idk_adapter;
+    private LinearLayoutManager layoutManager;
+    private RecyclerView recyclerView;
+
     private ArrayList<Integer> polls = new ArrayList<>();
     private ArrayList<User> yes_users = new ArrayList<>();
     private ArrayList<User> no_users = new ArrayList<>();
@@ -81,12 +89,8 @@ public class CompActivity extends AppCompatActivity implements OnMapReadyCallbac
         comp_name = findViewById(R.id.comp_name);
         comp_name.setText(mComps.get(current_pos).getName());
         comp_date = findViewById(R.id.comp_date);
-        comp_date.setText(String.format(Locale.KOREA, "%d년 %d월 %d일 %d:%d",
-                mComps.get(current_pos).getYear(),
-                mComps.get(current_pos).getMonth(),
-                mComps.get(current_pos).getDay(),
-                mComps.get(current_pos).getHr(),
-                mComps.get(current_pos).getMin()));
+        SimpleDateFormat dtf = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분");
+        comp_date.setText(dtf.format(mComps.get(current_pos).getDatetime().getTime()));
 
         comp_web = findViewById(R.id.comp_web);
         webpage = mComps.get(current_pos).getWeb();
@@ -97,8 +101,8 @@ public class CompActivity extends AppCompatActivity implements OnMapReadyCallbac
             comp_web.setText(mComps.get(current_pos).getWeb());
         }
 
-        comp_loc = mComps.get(current_pos).getLoc_name();
-        comp_addr = mComps.get(current_pos).getLocation();
+        comp_loc = mComps.get(current_pos).getLoc();
+        comp_addr = mComps.get(current_pos).getAddr();
         latlng = getLocationFromAddress(CompActivity.this, comp_addr+" "+comp_loc);
 
         layout_notice = findViewById(R.id.notice);
@@ -146,7 +150,9 @@ public class CompActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
+        initYesList();
+        initNoList();
+        initIdkList();
 
         yes_i_can.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,8 +161,11 @@ public class CompActivity extends AppCompatActivity implements OnMapReadyCallbac
                 comp_mystat.setTextColor(getResources().getColor(R.color.blue));
                 polls.set(userID, 2);
                 mPollTable.set(current_pos, polls);
-                initList();
 
+                initList();
+                yes_adapter.notifyDataSetChanged();
+                no_adapter.notifyDataSetChanged();
+                idk_adapter.notifyDataSetChanged();
             }
         });
         no_i_cant.setOnClickListener(new View.OnClickListener() {
@@ -166,7 +175,11 @@ public class CompActivity extends AppCompatActivity implements OnMapReadyCallbac
                 comp_mystat.setTextColor(getResources().getColor(R.color.red));
                 polls.set(userID, 1);
                 mPollTable.set(current_pos, polls);
+
                 initList();
+                yes_adapter.notifyDataSetChanged();
+                no_adapter.notifyDataSetChanged();
+                idk_adapter.notifyDataSetChanged();
             }
         });
 
@@ -176,6 +189,7 @@ public class CompActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if(!yes_bool){
                     yes_bool = true;
                     yes_btn.setText("축소");
+                    initYesList();
                     yes_list.setVisibility(View.VISIBLE);
                 }
                 else{
@@ -191,6 +205,7 @@ public class CompActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if(!no_bool){
                     no_bool = true;
                     no_btn.setText("축소");
+                    initNoList();
                     no_list.setVisibility(View.VISIBLE);
                 }
                 else{
@@ -206,6 +221,7 @@ public class CompActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if(!idk_bool){
                     idk_bool = true;
                     idk_btn.setText("축소");
+                    initIdkList();
                     idk_list.setVisibility(View.VISIBLE);
                 }
                 else{
@@ -269,36 +285,33 @@ public class CompActivity extends AppCompatActivity implements OnMapReadyCallbac
             index++;
         }
 
-        initYesList();
-        initNoList();
-        initIdkList();
+        yes_num.setText(""+yes_users.size());
+        no_num.setText(""+no_users.size());
+        idk_num.setText(""+idk_users.size());
     }
 
     private void initYesList(){
-        yes_num.setText(""+yes_users.size());
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        RecyclerView recyclerView = findViewById(R.id.yes_list);
+        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerView = findViewById(R.id.yes_list);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-        UserAdapter adapter = new UserAdapter(getApplicationContext(), yes_users);
-        recyclerView.setAdapter(adapter);
+        yes_adapter = new UserAdapter(getApplicationContext(), yes_users);
+        recyclerView.setAdapter(yes_adapter);
     }
 
     private void initNoList(){
-        no_num.setText(""+no_users.size());
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        RecyclerView recyclerView = findViewById(R.id.no_list);
+        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerView = findViewById(R.id.no_list);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-        UserAdapter adapter = new UserAdapter(getApplicationContext(), no_users);
-        recyclerView.setAdapter(adapter);
+        no_adapter = new UserAdapter(getApplicationContext(), no_users);
+        recyclerView.setAdapter(no_adapter);
     }
 
     private void initIdkList(){
-        idk_num.setText(""+idk_users.size());
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        RecyclerView recyclerView = findViewById(R.id.idk_list);
+        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerView = findViewById(R.id.idk_list);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-        UserAdapter adapter = new UserAdapter(getApplicationContext(), idk_users);
-        recyclerView.setAdapter(adapter);
+        idk_adapter = new UserAdapter(getApplicationContext(), idk_users);
+        recyclerView.setAdapter(idk_adapter);
     }
 
     public LatLng getLocationFromAddress(Context context, String strAddress) {

@@ -18,7 +18,9 @@ import com.example.winners_app.TabActivity.CompActivity;
 import com.example.winners_app.TabActivity.TabCompete;
 import com.example.winners_app.models.Competition;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by User on 2/12/2018.
@@ -45,7 +47,8 @@ public class CompAdapter extends RecyclerView.Adapter<CompAdapter.ViewHolder> {
 
         try{
             Log.d("CompAdapter", "onBindViewHolder: added!");
-            holder.comp_date.setText(mComps.get(position).getMonth()+"/"+mComps.get(position).getDay());
+            SimpleDateFormat df = new SimpleDateFormat("MM/dd");
+            holder.comp_date.setText(df.format(mComps.get(position).getDatetime().getTime()));
             holder.comp_name.setText(mComps.get(position).getName());
             holder.comp_image.setImageDrawable(mComps.get(position).getImage());
 
