@@ -7,6 +7,18 @@
     tools:context=".MainActivity"
     android:background="@color/colorPrimary">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/FAB_addimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="60dp"
+        android:clickable="true"
+        android:foregroundTint="#FFFFFF"
+        app:backgroundTint="#353535"
+        app:srcCompat="@android:drawable/ic_menu_add" />
+
     <SearchView
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
@@ -21,7 +33,9 @@
         android:searchIcon="@android:color/transparent"
         app:queryBackground="@drawable/searchbar_rounded"
         app:submitBackground="@drawable/searchbar_rounded"
-        android:visibility="invisible"/>
+        android:visibility="invisible">
+
+    </SearchView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="50dp"
@@ -39,6 +53,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="620dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

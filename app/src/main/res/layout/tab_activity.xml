@@ -6,11 +6,17 @@
     <TextView
         android:id="@+id/welcome_tv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:gravity="center"
         android:text="활동신청"
         android:textColor="@color/colorPrimary"
-        android:textSize="30dp"
-        android:gravity="center"/>
+        android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/btn_pointup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 
 </LinearLayout>
