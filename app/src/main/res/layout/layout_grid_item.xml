@@ -14,16 +14,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/home_cardview_border"
             android:padding="3dp">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="3dp"
-                android:layout_centerInParent="true">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
 
                     <ImageView
                         android:id="@+id/imageview_widget"
@@ -45,9 +37,6 @@
                         android:maxLines="1"
                         android:paddingHorizontal="3dp"/>
 
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

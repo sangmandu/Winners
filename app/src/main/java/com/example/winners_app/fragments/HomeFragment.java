@@ -38,29 +38,9 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ListView listview ;
-        ListViewAdapter adapter;
-
-        // Adapter 생성
-        adapter = new ListViewAdapter() ;
-
-        // 리스트뷰 참조 및 Adapter달기
-        listview = (ListView) view.findViewById(R.id.listview1);
-        listview.setAdapter(adapter);
-
-        // 첫 번째 아이템 추가.
-        adapter.addItem("   속보 : 위너스 어플 개발 연기");
-        adapter.addItem("   공지 : 전국대회 입상자 다수");
-        adapter.addItem("   공지 : 안드로이드 어려운 것으로 판명...");
-
-        // 두 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(getActivity(), R.drawable.recentphoto1),
-                ContextCompat.getDrawable(getActivity(), R.drawable.recentphoto2),
-                ContextCompat.getDrawable(getActivity(), R.drawable.recentphoto3));
-
-        // 세 번째 아이템 추가.
-        adapter.addItem("활동신청", 0);
-        adapter.addItem("현재 포인트 : ", 0);
-        adapter.addItem("클린데이", 0);
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frame_1, new FragmentCollapseCalender())
+                .commit();
     }
 }

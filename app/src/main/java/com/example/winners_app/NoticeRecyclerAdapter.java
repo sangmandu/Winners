@@ -1,10 +1,12 @@
+package com.example.winners_app;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.example.winners_app.R;
+
 import java.util.ArrayList;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,7 +14,7 @@ public class NoticeRecyclerAdapter extends RecyclerView.Adapter<NoticeRecyclerAd
     private ArrayList<NoticeRecycler> mData = null ;
 
     // 생성자에서 데이터 리스트 객체를 전달받음.
-    NoticeRecyclerAdapter(ArrayList<NoticeRecycler> list) {
+    public NoticeRecyclerAdapter(ArrayList<NoticeRecycler> list) {
         mData = list ;
     }
 

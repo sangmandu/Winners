@@ -1,27 +1,334 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/colorWinners"
+        android:padding="5dp">
 
-    <ListView
-        android:id="@+id/listview1"
-        android:layout_width="350dp"
-        android:layout_height="490dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="140dp"
-        android:divider="#00000000"
-        android:dividerHeight="1dp"
-        android:overScrollMode="never"
-        android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></ListView>
+        <androidx.cardview.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardElevation="3dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardCornerRadius="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:background="@drawable/home_cardview_title_border">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/calendar_icon">
+                </ImageView>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical|left"
+                    android:text="달력"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:id="@+id/frame_1"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/home_cardview_border"
+            card_view:cardElevation="3dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardCornerRadius="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1"
+                    android:background="@drawable/home_cardview_title_border">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/notice_icon">
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:textSize="12sp"
+                        android:gravity="center_vertical|left"
+                        android:text="게시판"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="0.3"
+                    android:textSize="20sp"
+                    android:gravity="center_vertical|left"
+                    android:text="어플 중도 포기, 김재성 못해먹겠다 발언"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="0.3"
+                    android:textSize="20sp"
+                    android:gravity="center_vertical|left"
+                    android:text="상민 결국 할당량 다 못채워"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#aaffffff"
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="0.3"
+                    android:textSize="20sp"
+                    android:gravity="center_vertical|left"
+                    android:text="카톡 어플, 달라진 개발 속도 예상"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/home_cardview_border"
+            card_view:cardElevation="3dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardCornerRadius="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/home_cardview_border"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1"
+                    android:background="@drawable/home_cardview_title_border">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/album_icon">
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:textSize="12sp"
+                        android:gravity="center_vertical|left"
+                        android:text="사진첩"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="150dp"
+                   android:layout_weight="0.9"
+                   android:layout_margin="5dp"
+                   android:orientation="horizontal">
+
+                   <ImageView
+                       android:layout_width="0dp"
+                       android:layout_height="match_parent"
+                       android:layout_weight="0.5"
+                       android:scaleType="centerCrop"
+                       android:src="@drawable/recentphoto1">
+                   </ImageView>
+
+                   <LinearLayout
+                       android:layout_width="0dp"
+                       android:layout_height="match_parent"
+                       android:layout_weight="0.5"
+                       android:orientation="horizontal">
+
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="match_parent"
+                           android:layout_weight="0.5"
+                           android:orientation="vertical">
+
+                           <ImageView
+                               android:layout_width="match_parent"
+                               android:layout_height="0dp"
+                               android:layout_weight="0.5"
+                               android:background="@drawable/edittext_edge"
+                               android:scaleType="centerCrop"
+                               android:src="@drawable/recentphoto2">
+                           </ImageView>
+
+                           <ImageView
+                               android:layout_width="match_parent"
+                               android:layout_height="0dp"
+                               android:layout_weight="0.5"
+                               android:scaleType="centerCrop"
+                               android:src="@drawable/recentphoto3">
+                           </ImageView>
+
+                       </LinearLayout>
+
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="match_parent"
+                           android:layout_weight="0.5"
+                           android:orientation="vertical">
+
+                           <ImageView
+                               android:layout_width="match_parent"
+                               android:layout_height="0dp"
+                               android:layout_weight="0.5"
+                               android:scaleType="centerCrop"
+                               android:src="@drawable/recentphoto4">
+                           </ImageView>
+
+                           <ImageView
+                               android:layout_width="match_parent"
+                               android:layout_height="0dp"
+                               android:layout_weight="0.5"
+                               android:scaleType="centerCrop"
+                               android:src="@drawable/recentphoto5">
+                           </ImageView>
+
+                       </LinearLayout>
+                   </LinearLayout>
+               </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/home_cardview_border"
+            card_view:cardElevation="3dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardCornerRadius="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1"
+                    android:background="@drawable/home_cardview_title_border">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/button_icon">
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:textSize="12sp"
+                        android:gravity="center_vertical|left"
+                        android:text="활동"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight ="15dp"
+                    android:layout_weight="0.3"
+                    android:textSize="20sp"
+                    android:gravity="center_vertical|left"
+                    android:background="@drawable/radius_activity"
+                    android:text="활동신청"
+                    android:textColor="@color/black"
+                    android:paddingLeft="20dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight ="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="0.3"
+                    android:textSize="20sp"
+                    android:gravity="center_vertical|left"
+                    android:background="@drawable/radius_point"
+                    android:text="현재 포인트"
+                    android:textColor="@color/black"
+                    android:paddingLeft="20dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight ="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="0.3"
+                    android:textSize="20sp"
+                    android:gravity="center_vertical|left"
+                    android:background="@drawable/radius_clean"
+                    android:text="클린데이"
+                    android:textColor="@color/black"
+                    android:paddingLeft="20dp"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

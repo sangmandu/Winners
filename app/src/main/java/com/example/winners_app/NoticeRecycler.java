@@ -1,3 +1,5 @@
+package com.example.winners_app;
+
 import android.graphics.drawable.Drawable;
 
 public class NoticeRecycler {
