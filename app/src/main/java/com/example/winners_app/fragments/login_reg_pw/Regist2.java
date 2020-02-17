@@ -72,7 +72,6 @@ public class Regist2 extends Fragment {
                 }
                 String userMajor = et_major.getText().toString();
                 String userAnswer = et_answer.getText().toString();
-                Log.d("asdf", "xx");
                 //volley 구문
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override

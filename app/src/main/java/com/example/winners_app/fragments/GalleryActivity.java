@@ -1,8 +1,10 @@
 package com.example.winners_app.fragments;
 
+import android.Manifest;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -26,6 +29,8 @@ import com.example.winners_app.Request.GetImageRequest;
 import com.example.winners_app.adapter.MyPagerAdapter;
 import com.example.winners_app.models.Cat;
 import com.example.winners_app.resources.Cats;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,12 +56,16 @@ public class GalleryActivity extends AppCompatActivity {
     ArrayList<Cat> cats = new ArrayList<>();
     ArrayList<Cat> cats2 = new ArrayList<>();
     ArrayList<GalleryItemFragment> fragments = new ArrayList<>();
-    Cat cat = cats2.get(mMyViewPager.getCurrentItem());
-    String image_url = cat.getImage().toString();
-    String image_title = cat.getTitle().toString();
+    String imagetitle, imageurl;
     Bitmap BitmapImage;
     String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
     back task;
+    String image_url, image_title;
+    String Save_Path;
+    String Save_folder = "/mydown";
+
+    ProgressBar loadingBar;
+    //DownloadThread dthread;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,53 +84,56 @@ public class GalleryActivity extends AppCompatActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SaveBitmapToFileCache(BitmapImage, extStorageDirectory, image_title);
 
+                Cat cat = cats2.get(mMyViewPager.getCurrentItem());
+                image_url = cat.getImage().toString();
+                image_title = cat.getTitle().toString();
+                SaveBitmapToFileCache(BitmapImage, extStorageDirectory, image_title);
             }
         });
     }
-    private class back extends AsyncTask<String, Integer, Bitmap>{
+    /*
+    class DownloadThread extends Thread{
+        String ServerUrl;
+        String LocalPath;
+
+        DownloadThread(String serverPath, String localPath){
+            ServerUrl = serverPath;
+            LocalPath = localPath;
+        }
+
+        @Override
+        public void run(){
+            URL imgurl;
+            int Read;
+            try{
+                imgurl = new URL(ServerUrl);
+                HttpURLConnection conn = (HttpURLConnection)
+            }
+        }
+
+    }
+    */
+
+    private class back extends AsyncTask<String, Integer, Bitmap> {
         @Override
         protected Bitmap doInBackground(String... urls) {
-            try{
+            try {
                 URL myFileUrl = new URL(urls[0]);
-                HttpURLConnection conn = (HttpURLConnection)myFileUrl.openConnection();
+                HttpURLConnection conn = (HttpURLConnection) myFileUrl.openConnection();
                 conn.setDoInput(true);
                 conn.connect();
 
                 InputStream is = conn.getInputStream();
                 BitmapImage = BitmapFactory.decodeStream(is);
-            } catch(IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             return BitmapImage;
         }
 
-        protected void onPostExecute(Bitmap img){
-            File file = new File(extStorageDirectory);
-
-            if (!file.exists()) {
-                file.mkdirs();
-            }
-
-            File fileCacheItem = new File(extStorageDirectory + image_title);
-            OutputStream out = null;
-
-            try {
-                fileCacheItem.createNewFile();
-                out = new FileOutputStream(fileCacheItem);
-
-                BitmapImage.compress(Bitmap.CompressFormat.JPEG, 100, out);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    out.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+        protected void onPostExecute(Bitmap img, String title) {
+            SaveBitmapToFileCache(img, extStorageDirectory, title);
         }
     }
 
@@ -162,15 +174,9 @@ public class GalleryActivity extends AppCompatActivity {
             out = new FileOutputStream(fileCacheItem);
 
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
-
-        } catch (Exception e) {
+            out.close();
+        } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                out.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 
