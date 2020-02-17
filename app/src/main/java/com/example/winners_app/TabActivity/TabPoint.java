@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +24,8 @@ public class TabPoint extends Fragment {
     private RecyclerView mRecyclerView = null;
     private PointRankAdapter mAdapter = null;
     ArrayList<PointRankItem> mList = new ArrayList<PointRankItem>();
+    public static TextView tv;
+    public static int point = 35;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,8 +35,10 @@ public class TabPoint extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mList.clear();
         mRecyclerView = view.findViewById(R.id.rv_pointrank);
-
+        tv = view.findViewById(R.id.tv_mypoint2);
+        setPoint();
         mAdapter = new PointRankAdapter(mList);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -53,5 +58,9 @@ public class TabPoint extends Fragment {
         item.setPoint(point);
 
         mList.add(item);
+    }
+
+    public static void setPoint(){
+        tv.setText(""+point);
     }
 }

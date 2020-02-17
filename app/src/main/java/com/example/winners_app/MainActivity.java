@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity
     private long backKeyPressedTime;
     private int Menu_Pos;
     private Toast backToast;
-
+    public int mypoint = 10;
     // BottomNavView와 NavDrawer 간의 연동 상수
     private DrawerLayout drawer;
     private BottomNavigationView bottomNavigationView;
