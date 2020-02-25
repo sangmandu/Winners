@@ -31,4 +31,5 @@
     <string name="default_notification_channel_id">Channel ID</string>
     <string name="default_notification_channel_name" translatable="true">Test</string>
 
+    <string name="api_key">AIzaSyAf4dWbQ3QuuR3BnGn3DyA0bmOdJ2lwmVA</string>
 </resources>

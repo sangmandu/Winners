@@ -4,9 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -30,11 +31,6 @@
         </activity>
         <activity android:name=".LoadingActivity"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".ForgetPwActivity">
@@ -44,6 +40,11 @@
         </activity>
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".fragments.GalleryActivity"
             android:theme="@style/AppTheme_ImageViewer"/>
@@ -61,7 +62,14 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
+        <activity android:name=".TabActivity.CompActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TabActivity.CompSetting"
+            android:screenOrientation="portrait"/>
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAf4dWbQ3QuuR3BnGn3DyA0bmOdJ2lwmVA" />
     </application>
 
 </manifest>
