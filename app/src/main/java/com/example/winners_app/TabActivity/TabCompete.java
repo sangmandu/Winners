@@ -96,6 +96,7 @@ public class TabCompete extends Fragment {
     }
 
     private void initUsers(){
+        mUsers.clear();
         User user0 = new User("김재성","https://images.unsplash.com/photo-1548161955-6fbe48d1ef32?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60");
         mUsers.add(user0);
         User user1 = new User("전상민","https://images.unsplash.com/photo-1507568237455-03228e5ddb7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60");
