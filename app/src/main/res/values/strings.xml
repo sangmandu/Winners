@@ -32,4 +32,13 @@
     <string name="default_notification_channel_name" translatable="true">Test</string>
 
     <string name="api_key">AIzaSyAf4dWbQ3QuuR3BnGn3DyA0bmOdJ2lwmVA</string>
+
+    <!-- Ted Permission -->
+    <string name="permission_1">[설정] > [권한] 에서 권한을 허용할 수 있습니다.</string>
+    <string name="permission_2">사진 및 파일을 저장하기 위하여 접근 권한이 필요합니다.</string>
+
+    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+
+    <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
+
 </resources>

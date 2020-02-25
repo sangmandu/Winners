@@ -31,6 +31,7 @@ public class TabCompete extends Fragment {
     public static ArrayList<User> mUsers = new ArrayList<>();
     public static ArrayList<ArrayList<Integer>> mPollTable = new ArrayList<>();
 
+    Button btn;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.tab_compete, container, false);

@@ -189,7 +189,6 @@ public class CompActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if(!yes_bool){
                     yes_bool = true;
                     yes_btn.setText("축소");
-                    initYesList();
                     yes_list.setVisibility(View.VISIBLE);
                 }
                 else{
@@ -205,7 +204,6 @@ public class CompActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if(!no_bool){
                     no_bool = true;
                     no_btn.setText("축소");
-                    initNoList();
                     no_list.setVisibility(View.VISIBLE);
                 }
                 else{
@@ -221,7 +219,6 @@ public class CompActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if(!idk_bool){
                     idk_bool = true;
                     idk_btn.setText("축소");
-                    initIdkList();
                     idk_list.setVisibility(View.VISIBLE);
                 }
                 else{

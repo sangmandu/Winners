@@ -62,4 +62,8 @@ public class Cat implements Parcelable {
         dest.writeString(title);
         dest.writeString(image);
     }
+    public void add(String title, String image){
+        this.title = title;
+        this.image = image;
+    }
 }

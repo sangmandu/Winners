@@ -18,6 +18,7 @@ public class ActivityFragment extends Fragment {
 
     private TabLayout tabLayout;
     private TabViewPager viewPager;
+    private int point = 10;
 
     public static ActivityFragment newInstance() {
         return new ActivityFragment();

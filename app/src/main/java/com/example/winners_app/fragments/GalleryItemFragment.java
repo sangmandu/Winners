@@ -67,6 +67,15 @@ public class GalleryItemFragment extends Fragment {
                     .into(mImage);
         }
     }
+
+    public Cat getmCat() {
+        return mCat;
+    }
+
+    public void setmCat(Cat mCat) {
+        this.mCat = mCat;
+    }
+
 }
 
 

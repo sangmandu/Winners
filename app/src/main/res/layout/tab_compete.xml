@@ -52,5 +52,4 @@
         android:overScrollMode="never"
         android:layout_below="@id/comp_menu"/>
 
-
 </RelativeLayout>

@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Forgetpw2Request extends StringRequest {
     // 서버 URL 설정 (PHP 파일 연동)
-    final static private String URL = "http://wns8363.dothome.co.kr/Forgetpw2.php";
+    final static private String URL = "http://wns8363.dothome.co.kr/UploadImage.php";
     private Map<String, String> map;
 
     public Forgetpw2Request(String userID, String NewPassword, Response.Listener<String> listener){
